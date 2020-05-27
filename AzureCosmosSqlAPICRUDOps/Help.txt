@@ -1,0 +1,30 @@
+﻿
+//selecting partition key is very important for performance
+
+.We need to select partionkey based of filter, on Which filter(field) we ask cosmosdb for data qury 
+   ex: select * from c wher c.Name="Eswar", In this case we most of the times we ask databse based name field so, we should 
+          select name as partition key on reads..
+. For write Operations like IOT, logging, metrics.. we will write lot of data, so in this case to improve the performnace 
+   we need to select high unique filed as partition key, to improve performance.
+
+.While retrieving data, cosmosdb is auto indexed it will be applied to all fields by default
+  and we need use feedoptions in code and we need to use UDF (User defined functions) in where clause to improve performance.
+
+  .Apply compositeIndexes to reduce RUs and cost and improve performance
+  . Use subquries filtering the arrays for lower RUs cost effective
+
+  .We can create uniqueky only when creating container, once created we can't update/edit the unique key
+  .If we apply uniqueue key to the container RU's will slightly higher and cost litte higher
+
+.The cost to read a 1 KB item is 1 Request Unit (or 1 RU). 
+  A minimum of 10 RU/s is required to store each 1 GB of data. 
+  All other database operations are similarly assigned a cost using RUs.
+  No matter which API you use to interact with your Azure Cosmos container, 
+  costs are always measured by RUs. Whether the database operation is a write, read, or query,
+  costs are always measured in RUs.
+  
+  .The strong and bounded staleness consistency levels consume approximately two times
+    more RUs while performing read operations when compared to that of other relaxed consistency levels.
+
+    ...Create user defined functions
+    https://docs.microsoft.com/en-us/rest/api/cosmos-db/create-a-user-defined-function
