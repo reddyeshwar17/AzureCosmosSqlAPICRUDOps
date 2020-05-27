@@ -28,3 +28,5 @@
 
     ...Create user defined functions
     https://docs.microsoft.com/en-us/rest/api/cosmos-db/create-a-user-defined-function
+
+ UDFs:-   https://www.syncfusion.com/ebooks/azure_cosmos_db_and_documentdb_succinctly/server-side-development
